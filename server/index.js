@@ -12,7 +12,7 @@ app.use(express.static(path.resolve(__dirname, "../client/build")));
 app.use("/api", getRoutes());
 
 // All routes that don't match api will be caught by this route (routed through our React app)
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
     res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });
 

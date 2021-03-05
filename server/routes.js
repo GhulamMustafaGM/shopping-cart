@@ -39,9 +39,9 @@ async function createCheckoutSession(req, res) {
         const line_items = validateCartItems(products, cartItems);
 
         const origin =
-            process.env.NODE_ENV === "production" ?
-            req.headers.origin :
-            "http://localhost:3000";
+            process.env.NODE_ENV === "production"
+                ? req.headers.origin
+                : "http://localhost:3000";
 
         const params = {
             submit_type: "pay",
@@ -71,7 +71,8 @@ async function getCheckoutSession(req, res) {
             throw Error("Incorrect checkout session id");
         }
         const checkout_session = await stripe.checkout.sessions.retrieve(
-            sessionId, { expand: ["payment_intent"] }
+            sessionId,
+            { expand: ["payment_intent"] }
         );
         res.status(200).json(checkout_session);
     } catch (error) {
